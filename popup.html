@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PR-helper</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      width: 280px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: 13px;
+      color: #24292f;
+      background: #ffffff;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        color: #c9d1d9;
+        background: #0d1117;
+      }
+
+      .subtitle,
+      .helper,
+      .footer {
+        color: #8b949e !important;
+      }
+
+      .divider {
+        background: #21262d !important;
+      }
+
+      label {
+        color: #c9d1d9 !important;
+      }
+
+      input[type="password"] {
+        background: #0d1117 !important;
+        border-color: #30363d !important;
+        color: #c9d1d9 !important;
+      }
+
+      .save-btn {
+        background: #21262d !important;
+        border-color: #30363d !important;
+        color: #c9d1d9 !important;
+      }
+
+      .save-btn:hover {
+        background: #30363d !important;
+      }
+    }
+
+    .container {
+      padding: 16px;
+    }
+
+    .header h1 {
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .subtitle {
+      font-size: 12px;
+      color: #57606a;
+      margin-top: 2px;
+    }
+
+    .section {
+      margin-top: 14px;
+    }
+
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #24292f;
+    }
+
+    .key-row {
+      display: flex;
+      gap: 6px;
+    }
+
+    input[type="password"] {
+      flex: 1;
+      min-width: 0;
+      padding: 5px 8px;
+      font-size: 12px;
+      border: 1px solid #d0d7de;
+      border-radius: 6px;
+      background: #ffffff;
+      color: #24292f;
+    }
+
+    input[type="password"]:focus {
+      outline: none;
+      border-color: #0969da;
+      box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.15);
+    }
+
+    .save-btn {
+      padding: 5px 10px;
+      font-size: 12px;
+      font-weight: 500;
+      border: 1px solid #d0d7de;
+      border-radius: 6px;
+      background: #f6f8fa;
+      color: #24292f;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .save-btn:hover {
+      background: #eaeef2;
+    }
+
+    .helper {
+      font-size: 11px;
+      color: #57606a;
+      margin-top: 6px;
+    }
+
+    .helper a {
+      color: #0969da;
+      text-decoration: none;
+    }
+
+    .helper a:hover {
+      text-decoration: underline;
+    }
+
+    .divider {
+      height: 1px;
+      background: #d0d7de;
+      margin: 14px 0;
+    }
+
+    .generate-btn {
+      width: 100%;
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #ffffff;
+      background: #238636;
+      border: 1px solid rgba(27, 31, 36, 0.15);
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .generate-btn:hover:not(:disabled) {
+      background: #2ea043;
+    }
+
+    .generate-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    #status {
+      margin-top: 10px;
+      font-size: 12px;
+      min-height: 18px;
+      line-height: 1.4;
+      color: #57606a;
+    }
+
+    #status.error {
+      color: #cf222e;
+    }
+
+    #status.success {
+      color: #1a7f37;
+    }
+
+    .footer {
+      margin-top: 14px;
+      font-size: 10px;
+      color: #8b949e;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>✨ PR-helper</h1>
+      <p class="subtitle">AI-powered PR descriptions</p>
+    </div>
+
+    <div class="section">
+      <label for="apiKey">Groq API Key</label>
+      <div class="key-row">
+        <input type="password" id="apiKey" placeholder="gsk_..." autocomplete="off" />
+        <button type="button" class="save-btn" id="saveBtn">Save</button>
+      </div>
+      <p class="helper">Free at <a href="https://console.groq.com" target="_blank" rel="noopener">console.groq.com</a></p>
+    </div>
+
+    <div class="divider"></div>
+
+    <button type="button" class="generate-btn" id="generateBtn">✨ Generate PR Description</button>
+
+    <div id="status"></div>
+
+    <p class="footer">PR-helper • open source</p>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

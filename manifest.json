@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "PR-helper",
+  "version": "1.0.0",
+  "description": "Auto-generate GitHub PR titles, descriptions, and testing checklists using AI",
+  "permissions": ["activeTab", "scripting", "storage"],
+  "host_permissions": ["https://github.com/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "128": "icons/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://github.com/*/*/compare/*",
+        "https://github.com/*/*/pull/new/*",
+        "https://github.com/*/*/pulls/*"
+      ],
+      "js": ["content.js"]
+    }
+  ]
+}
