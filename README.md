@@ -1,4 +1,4 @@
-# PR-helper
+# PR Helper
 
 > AI-powered Chrome extension that auto-generates GitHub PR titles, descriptions, and testing checklists from your diff.
 
@@ -33,14 +33,14 @@ git clone https://github.com/YOUR_USERNAME/PR-helper.git
 ## Setup
 
 1. Get a free Groq API key at [console.groq.com](https://console.groq.com)
-2. Click the PR-helper extension icon
+2. Click the PR Helper extension icon
 3. Paste your API key and click Save
 
 ## Usage
 
 1. Go to any GitHub repository
 2. Open a Pull Request or create a new one
-3. Click the PR-helper extension icon
+3. Click the PR Helper extension icon
 4. Click **Generate PR Description**
 5. Your PR title and description are auto-filled — review and submit
 
