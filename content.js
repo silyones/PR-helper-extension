@@ -1,39 +1,58 @@
 function extractDiff() {
-  const files = document.querySelectorAll('.file');
-  if (!files.length) {
-    console.log('[PR-helper] No .file elements found in DOM');
-    return '';
-  }
+  let diffText = '';
 
-  const parts = [];
+  // Get all elements with file path info
+  const fileContainers = document.querySelectorAll('[data-tagsearch-path]');
 
-  files.forEach((fileEl) => {
-    const header = fileEl.querySelector('.file-header');
-    const filename = header?.getAttribute('data-path') || header?.querySelector('.Link--primary')?.textContent?.trim() || 'unknown';
+  console.log('PR-helper: found', fileContainers.length, 'file containers');
 
-    const additions = fileEl.querySelectorAll('.blob-code-addition');
-    const deletions = fileEl.querySelectorAll('.blob-code-deletion');
+  fileContainers.forEach((container) => {
+    const filename = container.getAttribute('data-tagsearch-path');
 
-    const lines = [];
+    // Find the diff table within or near this container
+    const diffTable =
+      container.querySelector('table.diff-table') ||
+      container.closest('[class*="file"]')?.querySelector('table.diff-table');
 
-    deletions.forEach((el) => {
-      const text = el.textContent?.trim();
-      if (text) lines.push('-' + text);
-    });
+    if (!diffTable) return;
 
-    additions.forEach((el) => {
-      const text = el.textContent?.trim();
-      if (text) lines.push('+' + text);
-    });
+    const additions = [...diffTable.querySelectorAll('td.blob-code-addition')]
+      .map((el) => '+ ' + el.textContent.trim())
+      .filter((line) => line.length > 2);
 
-    if (lines.length) {
-      parts.push(`--- ${filename} ---\n${lines.join('\n')}`);
+    const deletions = [...diffTable.querySelectorAll('td.blob-code-deletion')]
+      .map((el) => '- ' + el.textContent.trim())
+      .filter((line) => line.length > 2);
+
+    if (additions.length || deletions.length) {
+      diffText += `\n\nFile: ${filename}\n${deletions.join('\n')}\n${additions.join('\n')}`;
     }
   });
 
-  const diff = parts.join('\n\n');
-  console.log('[PR-helper] Diff extracted, character count:', diff.length);
-  return diff;
+  // Fallback: if no file containers found, scan whole document for diff tables directly
+  if (!diffText) {
+    console.log('PR-helper: fallback - scanning all diff tables');
+    const allTables = document.querySelectorAll('table.diff-table');
+    console.log('PR-helper: found', allTables.length, 'diff tables');
+
+    allTables.forEach((table, i) => {
+      const additions = [...table.querySelectorAll('td.blob-code-addition')]
+        .map((el) => '+ ' + el.textContent.trim())
+        .filter((line) => line.length > 2);
+      const deletions = [...table.querySelectorAll('td.blob-code-deletion')]
+        .map((el) => '- ' + el.textContent.trim())
+        .filter((line) => line.length > 2);
+
+      if (additions.length || deletions.length) {
+        diffText += `\n\nFile ${i + 1}:\n${deletions.join('\n')}\n${additions.join('\n')}`;
+      }
+    });
+  }
+
+  console.log('PR-helper: extracted diff length:', diffText.length);
+  console.log('PR-helper: diff preview:', diffText.slice(0, 500));
+
+  return diffText.trim();
 }
 
 function fillPRFields(title, description) {
