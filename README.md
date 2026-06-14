@@ -6,9 +6,9 @@ PR Helper is free to use, easy to self-host, and built for developers who want t
 
 ## Demo
 
-<video src="steps to use.mp4" controls width="640">
-  Your browser does not support the video tag. <a href="steps to use.mp4">Download the demo video</a>.
-</video>
+[![Watch the PR Helper demo](docs/demo-poster.png)](steps%20to%20use.mp4)
+
+Click the image above to open the full walkthrough video on GitHub.
 
 ## Features
 
@@ -37,7 +37,7 @@ Contributions that add provider support (or make the provider configurable) are 
 1. Clone this repo
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/PR-helper-extension.git
+git clone https://github.com/silyones/PR-helper-extension.git
 ```
 
 2. Open Chrome and go to `chrome://extensions`
@@ -74,7 +74,7 @@ This project is open source and I would love to collaborate.
 
 Ways to help:
 
-- Report bugs or request features via [GitHub Issues](https://github.com/YOUR_USERNAME/PR-helper-extension/issues)
+- Report bugs or request features via [GitHub Issues](https://github.com/silyones/PR-helper-extension/issues)
 - Suggest or add support for other LLM providers
 - Improve diff parsing as GitHub’s UI changes
 - Polish the popup UI or documentation
