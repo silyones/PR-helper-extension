@@ -18,8 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
   saveBtn.addEventListener('click', async () => {
     const value = apiKeyInput.value.trim();
     await chrome.storage.sync.set({ groqApiKey: value });
-    setStatus('API key saved.', 'success');
-    setTimeout(() => setStatus(''), 2000);
+    apiKeyInput.classList.add('saved');
+    setTimeout(() => apiKeyInput.classList.remove('saved'), 2000);
   });
 
   generateBtn.addEventListener('click', async () => {

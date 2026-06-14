@@ -12,115 +12,28 @@
     }
 
     body {
-      width: 320px;
+      width: 300px;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
       font-size: 13px;
       line-height: 1.5;
-      color: #1f2328;
-      background: #ffffff;
+      color: #c9d1d9;
+      background: #0d1117;
     }
 
-    @media (prefers-color-scheme: dark) {
-      body {
-        color: #e6edf3;
-        background: #0d1117;
-      }
-
-      .header {
-        border-bottom-color: #21262d;
-      }
-
-      .subtitle,
-      .helper,
-      .footer,
-      .section-label {
-        color: #8b949e;
-      }
-
-      .card {
-        background: #161b22;
-        border-color: #30363d;
-      }
-
-      label {
-        color: #e6edf3;
-      }
-
-      input[type="password"] {
-        background: #0d1117;
-        border-color: #30363d;
-        color: #e6edf3;
-      }
-
-      input[type="password"]:focus {
-        border-color: #388bfd;
-        box-shadow: 0 0 0 3px rgba(56, 139, 253, 0.2);
-      }
-
-      .save-btn {
-        background: #21262d;
-        border-color: #30363d;
-        color: #e6edf3;
-      }
-
-      .save-btn:hover {
-        background: #30363d;
-      }
-
-      #status {
-        background: #161b22;
-        border-color: #30363d;
-        color: #8b949e;
-      }
-
-      #status.success {
-        background: rgba(35, 134, 54, 0.12);
-        border-color: rgba(35, 134, 54, 0.4);
-        color: #3fb950;
-      }
-
-      #status.error {
-        background: rgba(248, 81, 73, 0.1);
-        border-color: rgba(248, 81, 73, 0.35);
-        color: #f85149;
-      }
+    .container {
+      padding: 16px;
     }
 
     .header {
-      padding: 16px 18px 14px;
-      border-bottom: 1px solid #d8dee4;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #21262d;
     }
 
     .header h1 {
       font-size: 15px;
       font-weight: 600;
-      letter-spacing: -0.01em;
-    }
-
-    .subtitle {
-      font-size: 12px;
-      color: #656d76;
-      margin-top: 2px;
-    }
-
-    .content {
-      padding: 16px 18px 18px;
-    }
-
-    .section-label {
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      color: #656d76;
-      margin-bottom: 8px;
-    }
-
-    .card {
-      background: #f6f8fa;
-      border: 1px solid #d8dee4;
-      border-radius: 8px;
-      padding: 12px;
+      color: #f0f6fc;
     }
 
     label {
@@ -128,7 +41,7 @@
       font-size: 12px;
       font-weight: 500;
       margin-bottom: 6px;
-      color: #1f2328;
+      color: #c9d1d9;
     }
 
     .key-row {
@@ -142,43 +55,48 @@
       padding: 7px 10px;
       font-size: 12px;
       font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
-      border: 1px solid #d0d7de;
+      border: 1px solid #30363d;
       border-radius: 6px;
-      background: #ffffff;
-      color: #1f2328;
+      background: #0d1117;
+      color: #c9d1d9;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
     }
 
     input[type="password"]:focus {
       outline: none;
-      border-color: #0969da;
-      box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.15);
+      border-color: #388bfd;
+      box-shadow: 0 0 0 3px rgba(56, 139, 253, 0.2);
+    }
+
+    input[type="password"].saved {
+      border-color: #238636;
+      box-shadow: 0 0 0 3px rgba(35, 134, 54, 0.25);
     }
 
     .save-btn {
       padding: 7px 12px;
       font-size: 12px;
       font-weight: 500;
-      border: 1px solid #d0d7de;
+      border: 1px solid #30363d;
       border-radius: 6px;
-      background: #ffffff;
-      color: #1f2328;
+      background: #21262d;
+      color: #c9d1d9;
       cursor: pointer;
       white-space: nowrap;
-      transition: background 0.15s ease;
     }
 
     .save-btn:hover {
-      background: #f3f4f6;
+      background: #30363d;
     }
 
     .helper {
       font-size: 11px;
-      color: #656d76;
+      color: #8b949e;
       margin-top: 8px;
     }
 
     .helper a {
-      color: #0969da;
+      color: #58a6ff;
       text-decoration: none;
     }
 
@@ -186,12 +104,9 @@
       text-decoration: underline;
     }
 
-    .actions {
-      margin-top: 16px;
-    }
-
     .generate-btn {
       width: 100%;
+      margin-top: 16px;
       padding: 9px 14px;
       font-size: 13px;
       font-weight: 600;
@@ -200,7 +115,6 @@
       border: 1px solid rgba(27, 31, 36, 0.15);
       border-radius: 6px;
       cursor: pointer;
-      transition: background 0.15s ease;
     }
 
     .generate-btn:hover:not(:disabled) {
@@ -213,15 +127,11 @@
     }
 
     #status {
-      margin-top: 12px;
-      padding: 8px 10px;
+      margin-top: 10px;
       font-size: 12px;
       line-height: 1.45;
-      min-height: 36px;
-      border: 1px solid #d8dee4;
-      border-radius: 6px;
-      background: #f6f8fa;
-      color: #656d76;
+      color: #8b949e;
+      min-height: 18px;
     }
 
     #status:empty {
@@ -229,49 +139,30 @@
     }
 
     #status.success {
-      background: #dafbe1;
-      border-color: #aceebb;
-      color: #116329;
+      color: #3fb950;
     }
 
     #status.error {
-      background: #ffebe9;
-      border-color: #ffcecb;
-      color: #cf222e;
-    }
-
-    .footer {
-      padding: 0 18px 14px;
-      font-size: 11px;
-      color: #8b949e;
-      text-align: center;
+      color: #f85149;
     }
   </style>
 </head>
 <body>
-  <header class="header">
-    <h1>PR-helper</h1>
-    <p class="subtitle">Generate pull request titles and descriptions from your diff</p>
-  </header>
+  <div class="container">
+    <header class="header">
+      <h1>PR-helper</h1>
+    </header>
 
-  <div class="content">
-    <p class="section-label">Configuration</p>
-    <div class="card">
-      <label for="apiKey">Groq API key</label>
-      <div class="key-row">
-        <input type="password" id="apiKey" placeholder="gsk_..." autocomplete="off" spellcheck="false" />
-        <button type="button" class="save-btn" id="saveBtn">Save</button>
-      </div>
-      <p class="helper">Get a free key at <a href="https://console.groq.com" target="_blank" rel="noopener">console.groq.com</a></p>
+    <label for="apiKey">Groq API key</label>
+    <div class="key-row">
+      <input type="password" id="apiKey" placeholder="gsk_..." autocomplete="off" spellcheck="false" />
+      <button type="button" class="save-btn" id="saveBtn">Save</button>
     </div>
+    <p class="helper">Get a free key at <a href="https://console.groq.com" target="_blank" rel="noopener">console.groq.com</a></p>
 
-    <div class="actions">
-      <button type="button" class="generate-btn" id="generateBtn">Generate PR description</button>
-      <div id="status" role="status" aria-live="polite"></div>
-    </div>
+    <button type="button" class="generate-btn" id="generateBtn">Generate PR description</button>
+    <div id="status" role="status" aria-live="polite"></div>
   </div>
-
-  <p class="footer">PR-helper</p>
 
   <script src="popup.js"></script>
 </body>
