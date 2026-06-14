@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   saveBtn.addEventListener('click', async () => {
     const value = apiKeyInput.value.trim();
     await chrome.storage.sync.set({ groqApiKey: value });
-    setStatus('Saved ✓', 'success');
+    setStatus('API key saved.', 'success');
     setTimeout(() => setStatus(''), 2000);
   });
 
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
         description: result.description,
       });
 
-      setStatus('✅ Fields filled! Review and submit.', 'success');
+      setStatus('Fields filled. Review and submit.', 'success');
     } catch (err) {
       setStatus(err.message || 'Something went wrong.', 'error');
     } finally {
