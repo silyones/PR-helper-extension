@@ -6,9 +6,7 @@ PR Helper is free to use, easy to self-host, and built for developers who want t
 
 ## Demo
 
-[![Watch the PR Helper demo](docs/demo-poster.png)](steps%20to%20use.mp4)
-
-Click the image above to open the full walkthrough video on GitHub.
+https://github.com/user-attachments/assets/897624ed-67d8-4167-ba28-ed0fc6c8c3f3
 
 ## Features
 
