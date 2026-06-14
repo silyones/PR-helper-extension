@@ -56,21 +56,54 @@ function extractDiff() {
 }
 
 function fillPRFields(title, description) {
-  const titleField = document.querySelector('#pull_request_title');
-  const bodyField = document.querySelector('#pull_request_body');
+  const titleField = document.querySelector('input[name="pull_request[title]"]');
 
-  if (!titleField || !bodyField) {
-    console.log('[PR-helper] PR form fields not found');
+  const bodyField =
+    document.querySelector('textarea[name="pull_request[body]"]') ||
+    document.querySelector('.js-previewable-comment-form textarea') ||
+    document.querySelector('[class*="CommentBox"] textarea');
+
+  console.log('[PR-helper] titleField:', titleField);
+  console.log('[PR-helper] bodyField:', bodyField);
+
+  if (!titleField && !bodyField) {
+    console.log('[PR-helper] Not found. Dumping all textareas:');
+    document.querySelectorAll('textarea').forEach((el) => {
+      console.log({
+        name: el.name,
+        id: el.id,
+        ariaLabel: el.getAttribute('aria-label'),
+        className: el.className,
+      });
+    });
     return false;
   }
 
-  titleField.value = title;
-  titleField.dispatchEvent(new Event('input', { bubbles: true }));
+  // React-safe value setter
+  function setReactInputValue(element, value) {
+    const prototype =
+      element.tagName === 'TEXTAREA'
+        ? window.HTMLTextAreaElement.prototype
+        : window.HTMLInputElement.prototype;
+    const nativeInputValueSetter = Object.getOwnPropertyDescriptor(prototype, 'value').set;
+    nativeInputValueSetter.call(element, value);
 
-  bodyField.value = description;
-  bodyField.dispatchEvent(new Event('input', { bubbles: true }));
+    element.dispatchEvent(new Event('input', { bubbles: true }));
+    element.dispatchEvent(new Event('change', { bubbles: true }));
+  }
 
-  console.log('[PR-helper] Fields filled — title:', title.slice(0, 60));
+  if (titleField) {
+    titleField.focus();
+    setReactInputValue(titleField, title);
+    console.log('[PR-helper] title set');
+  }
+
+  if (bodyField) {
+    bodyField.focus();
+    setReactInputValue(bodyField, description);
+    console.log('[PR-helper] body set, length:', description.length);
+  }
+
   return true;
 }
 
